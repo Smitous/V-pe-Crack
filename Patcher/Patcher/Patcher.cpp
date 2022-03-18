@@ -28,11 +28,11 @@ main(int argc, char* argv[])
     if (!load_library)
         return -1;
 
-    process_memory = VirtualAllocEx(pi.hProcess, NULL, strlen("Patch.dll"), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+    process_memory = VirtualAllocEx(pi.hProcess, NULL, strlen("Kangaroo.dll"), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
     if (!process_memory)
         return -1;
 
-    if (!WriteProcessMemory(pi.hProcess, process_memory, "Patch.dll", strlen("Patch.dll"), NULL))
+    if (!WriteProcessMemory(pi.hProcess, process_memory, "Kangaroo.dll", strlen("Kangaroo.dll"), NULL))
         return -1;
 
     if (!CreateRemoteThread(pi.hProcess, NULL, NULL, (LPTHREAD_START_ROUTINE)load_library, process_memory, NULL, NULL))
